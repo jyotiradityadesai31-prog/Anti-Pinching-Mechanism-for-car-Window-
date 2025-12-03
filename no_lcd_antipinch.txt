@@ -1,0 +1,124 @@
+#include <xc.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define _XTAL_FREQ 4000000
+
+#define LED1 PORTBbits.RB7
+#define LED2 PORTBbits.RB6
+#define L_en PORTBbits.RB5
+#define R_en PORTBbits.RB4
+#define SW1 PORTBbits.RB2
+#define SW2 PORTBbits.RB3
+
+volatile unsigned char reverseFlag = 0;
+unsigned long reverseCounter = 0;
+
+// --- ACS712 constants ---
+#define VREF 5.0f
+#define ADC_MAX 1023.0f
+#define ACS_SENS 0.066f
+#define ZERO_CAL_SAMPLES 2000
+#define MAIN_SAMPLES 100
+#define SAMPLE_DELAY_MS 2
+#define ZERO_CURRENT_A 1.5f
+#define CURRENT_THRESHOLD 6.00f
+
+unsigned int zero_offset = 512;
+char buffer[32];
+
+unsigned int atod(void);
+void do_zero_calibration(void);
+void show_current_on_lcd(float current, float adc_avg) {}  // removed LCD
+void lcdcmd(unsigned char d){}  // removed
+void lcddata(unsigned char d){} // removed
+void lcdinit(){} // removed
+void lcdstring(const char*s){} // removed
+void ledUp(void);
+void ledDown(void);
+void ledStop(void);
+
+void ledUp(){ LED1=1; LED2=0; }
+void ledDown(){ LED1=0; LED2=1; }
+void ledStop(){ LED1=0; LED2=0; }
+
+void __interrupt() ISR(void){
+    if(INT1IF){ reverseFlag=1; reverseCounter=0; INT1IF=0; }
+}
+
+unsigned int atod() {
+    ADCON0bits.GO = 1;
+    while (ADCON0bits.GO);
+    return ((ADRESH<<8)|ADRESL);
+}
+
+void do_zero_calibration(){
+    unsigned long sum=0;
+    for(int i=0;i<ZERO_CAL_SAMPLES;i++){ sum+=atod(); __delay_ms(SAMPLE_DELAY_MS); }
+    zero_offset = sum / ZERO_CAL_SAMPLES;
+}
+
+void main(){
+    OSCCON = 0x6A;
+
+    TRISC=0x00;
+    TRISD=0x00;
+    L_en=1;
+    R_en=1;
+
+    TRISBbits.TRISB7=0;
+    TRISBbits.TRISB6=0;
+    TRISBbits.TRISB2=1;
+    TRISBbits.TRISB3=1;
+    TRISBbits.TRISB5=0;
+    TRISBbits.TRISB4=0;
+    INTCON2bits.RBPU=0;
+
+    PORTBbits.RB5=1;
+    PORTBbits.RB4=1;
+
+    RCONbits.IPEN=0;
+    INTCON3bits.INT1IE=1;
+    INTCON2bits.INTEDG1=0;
+    INTCON3bits.INT1IF=0;
+    INTCONbits.GIE=1;
+    INTCONbits.PEIE=1;
+
+    TRISAbits.TRISA1=1;
+    ADCON0=0x05;
+    ADCON1=0x0D;
+    ADCON2=0x8D;
+
+    do_zero_calibration();
+
+    unsigned char overcurrentLatched=0;
+
+    while(1){
+        unsigned long sum=0;
+        for(int i=0;i<MAIN_SAMPLES;i++){ sum+=atod(); __delay_ms(SAMPLE_DELAY_MS); }
+        float adc_avg = sum / (float)MAIN_SAMPLES;
+
+        float voltage = (adc_avg*VREF)/ADC_MAX;
+        float zero_voltage = (zero_offset*VREF)/ADC_MAX;
+        float current = (voltage-zero_voltage)/ACS_SENS;
+
+        if(!overcurrentLatched && fabs(current)>=CURRENT_THRESHOLD){
+            INT1IF=1;
+            overcurrentLatched=1;
+        }
+        if(overcurrentLatched && fabs(current)<CURRENT_THRESHOLD){ overcurrentLatched=0; }
+
+        if(reverseFlag){
+            ledDown();
+            __delay_ms(3000);
+            reverseFlag=0;
+            reverseCounter++;
+            if(reverseCounter>300){ reverseFlag=0; reverseCounter=0; }
+        } else {
+            if(SW1==0 && SW2==1) ledUp();
+            else if(SW1==1 && SW2==0) ledDown();
+            else ledStop();
+        }
+    }
+}
