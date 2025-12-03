@@ -1,0 +1,364 @@
+
+// PIC18F4520 Configuration Bit Settings
+
+// 'C' source line config statements
+
+
+// CONFIG1H
+#pragma config OSC = INTIO67    // Oscillator Selection bits (Internal oscillator block, port function on RA6 and RA7)
+#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
+#pragma config IESO = OFF       // Internal/External Oscillator Switchover bit (Oscillator Switchover mode disabled)
+
+// CONFIG2L
+#pragma config PWRT = ON        // Power-up Timer Enable bit (PWRT enabled)
+#pragma config BOREN = OFF      // Brown-out Reset Enable bits (Brown-out Reset disabled in hardware and software)
+#pragma config BORV = 3         // Brown Out Reset Voltage bits (Minimum setting)
+
+// CONFIG2H
+#pragma config WDT = OFF        // Watchdog Timer Enable bit (WDT disabled (control is placed on the SWDTEN bit))
+#pragma config WDTPS = 32768    // Watchdog Timer Postscale Select bits (1:32768)
+
+// CONFIG3H
+#pragma config CCP2MX = PORTC   // CCP2 MUX bit (CCP2 input/output is multiplexed with RC1)
+#pragma config PBADEN = OFF     // PORTB A/D Enable bit (PORTB<4:0> pins are configured as digital I/O on Reset)
+#pragma config LPT1OSC = OFF    // Low-Power Timer1 Oscillator Enable bit (Timer1 configured for higher power operation)
+#pragma config MCLRE = OFF       // MCLR Pin Enable bit (MCLR pin enabled; RE3 input pin disabled)
+
+// CONFIG4L
+#pragma config STVREN = ON      // Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause Reset)
+#pragma config LVP = OFF        // Single-Supply ICSP Enable bit (Single-Supply ICSP disabled)
+#pragma config XINST = OFF      // Extended Instruction Set Enable bit (Instruction set extension and Indexed Addressing mode disabled (Legacy mode))
+
+// CONFIG5L
+#pragma config CP0 = ON         // Code Protection bit (Block 0 (000800-001FFFh) code-protected)
+#pragma config CP1 = ON         // Code Protection bit (Block 1 (002000-003FFFh) code-protected)
+#pragma config CP2 = ON         // Code Protection bit (Block 2 (004000-005FFFh) code-protected)
+#pragma config CP3 = ON         // Code Protection bit (Block 3 (006000-007FFFh) code-protected)
+
+// CONFIG5H
+#pragma config CPB = OFF        // Boot Block Code Protection bit (Boot block (000000-0007FFh) not code-protected)
+#pragma config CPD = ON        // Data EEPROM Code Protection bit (Data EEPROM not code-protected)
+
+// CONFIG6L
+#pragma config WRT0 = OFF       // Write Protection bit (Block 0 (000800-001FFFh) not write-protected)
+#pragma config WRT1 = OFF       // Write Protection bit (Block 1 (002000-003FFFh) not write-protected)
+#pragma config WRT2 = OFF       // Write Protection bit (Block 2 (004000-005FFFh) not write-protected)
+#pragma config WRT3 = OFF       // Write Protection bit (Block 3 (006000-007FFFh) not write-protected)
+
+// CONFIG6H
+#pragma config WRTC = OFF       // Configuration Register Write Protection bit (Configuration registers (300000-3000FFh) not write-protected)
+#pragma config WRTB = OFF       // Boot Block Write Protection bit (Boot block (000000-0007FFh) not write-protected)
+#pragma config WRTD = OFF       // Data EEPROM Write Protection bit (Data EEPROM not write-protected)
+
+// CONFIG7L
+#pragma config EBTR0 = OFF      // Table Read Protection bit (Block 0 (000800-001FFFh) not protected from table reads executed in other blocks)
+#pragma config EBTR1 = OFF      // Table Read Protection bit (Block 1 (002000-003FFFh) not protected from table reads executed in other blocks)
+#pragma config EBTR2 = OFF      // Table Read Protection bit (Block 2 (004000-005FFFh) not protected from table reads executed in other blocks)
+#pragma config EBTR3 = OFF      // Table Read Protection bit (Block 3 (006000-007FFFh) not protected from table reads executed in other blocks)
+
+// CONFIG7H
+#pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot block (000000-0007FFh) not protected from table reads executed in other blocks)
+
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+
+// PIC18F4520 Configuration Bit Settings
+
+// 'C' source line config statements
+
+// CONFIG1H
+#pragma config OSC = INTIO67    // Oscillator Selection bits (Internal oscillator block, port function on RA6 and RA7)
+#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
+#pragma config IESO = OFF       // Internal/External Oscillator Switchover bit (Oscillator Switchover mode disabled)
+
+// CONFIG2L
+#pragma config PWRT = ON        // Power-up Timer Enable bit (PWRT enabled)
+#pragma config BOREN = OFF      // Brown-out Reset Enable bits (Brown-out Reset disabled in hardware and software)
+#pragma config BORV = 3         // Brown Out Reset Voltage bits (Minimum setting)
+
+// CONFIG2H
+#pragma config WDT = OFF        // Watchdog Timer Enable bit (WDT disabled (control is placed on the SWDTEN bit))
+#pragma config WDTPS = 32768    // Watchdog Timer Postscale Select bits (1:32768)
+
+// CONFIG3H
+#pragma config CCP2MX = PORTC   // CCP2 MUX bit (CCP2 input/output is multiplexed with RC1)
+#pragma config PBADEN = OFF     // PORTB A/D Enable bit (PORTB<4:0> pins are configured as digital I/O on Reset)
+#pragma config LPT1OSC = OFF    // Low-Power Timer1 Oscillator Enable bit (Timer1 configured for higher power operation)
+#pragma config MCLRE = OFF       // MCLR Pin Enable bit (MCLR pin enabled; RE3 input pin disabled)
+
+// CONFIG4L
+#pragma config STVREN = ON      // Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause Reset)
+#pragma config LVP = OFF        // Single-Supply ICSP Enable bit (Single-Supply ICSP disabled)
+#pragma config XINST = OFF      // Extended Instruction Set Enable bit (Instruction set extension and Indexed Addressing mode disabled (Legacy mode))
+
+// CONFIG5L
+#pragma config CP0 = ON         // Code Protection bit (Block 0 (000800-001FFFh) code-protected)
+#pragma config CP1 = ON         // Code Protection bit (Block 1 (002000-003FFFh) code-protected)
+#pragma config CP2 = ON         // Code Protection bit (Block 2 (004000-005FFFh) code-protected)
+#pragma config CP3 = ON         // Code Protection bit (Block 3 (006000-007FFFh) code-protected)
+
+// CONFIG5H
+#pragma config CPB = OFF        // Boot Block Code Protection bit (Boot block (000000-0007FFh) not code-protected)
+#pragma config CPD = ON        // Data EEPROM Code Protection bit (Data EEPROM not code-protected)
+
+// CONFIG6L
+#pragma config WRT0 = OFF       // Write Protection bit (Block 0 (000800-001FFFh) not write-protected)
+#pragma config WRT1 = OFF       // Write Protection bit (Block 1 (002000-003FFFh) not write-protected)
+#pragma config WRT2 = OFF       // Write Protection bit (Block 2 (004000-005FFFh) not write-protected)
+#pragma config WRT3 = OFF       // Write Protection bit (Block 3 (006000-007FFFh) not write-protected)
+
+// CONFIG6H
+#pragma config WRTC = OFF       // Configuration Register Write Protection bit (Configuration registers (300000-3000FFh) not write-protected)
+#pragma config WRTB = OFF       // Boot Block Write Protection bit (Boot block (000000-0007FFh) not write-protected)
+#pragma config WRTD = OFF       // Data EEPROM Write Protection bit (Data EEPROM not write-protected)
+
+// CONFIG7L
+#pragma config EBTR0 = OFF      // Table Read Protection bit (Block 0 (000800-001FFFh) not protected from table reads executed in other blocks)
+#pragma config EBTR1 = OFF      // Table Read Protection bit (Block 1 (002000-003FFFh) not protected from table reads executed in other blocks)
+#pragma config EBTR2 = OFF      // Table Read Protection bit (Block 2 (004000-005FFFh) not protected from table reads executed in other blocks)
+#pragma config EBTR3 = OFF      // Table Read Protection bit (Block 3 (006000-007FFFh) not protected from table reads executed in other blocks)
+
+// CONFIG7H
+#pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot block (000000-0007FFh) not protected from table reads executed in other blocks)
+
+// #pragma config statements should precede project file includes.
+#include <xc.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define _XTAL_FREQ 4000000   // 4 MHz internal oscillator
+
+// --- LED pins ---
+#define LED1 PORTBbits.RB7
+#define LED2 PORTBbits.RB6
+#define L_en PORTBbits.RB5
+#define R_en PORTBbits.RB4
+// Switch Inputs
+#define SW1 PORTBbits.RB2
+#define SW2 PORTBbits.RB3
+
+volatile unsigned char reverseFlag = 0;  // set by ISR or current check
+unsigned long reverseCounter = 0;        // counts duration of reverse
+
+// --- LCD pins ---
+#define rs PORTCbits.RC1
+#define rw PORTCbits.RC2
+#define en PORTCbits.RC3
+
+// --- ADC / ACS712 constants ---
+#define VREF             5.0f
+#define ADC_MAX          1023.0f
+#define ACS_SENS         0.066f    // 66 mV/A for ACS712-30A
+#define ZERO_CAL_SAMPLES 2000
+#define MAIN_SAMPLES     100
+#define SAMPLE_DELAY_MS  2
+#define ZERO_CURRENT_A   1.5f
+#define CURRENT_THRESHOLD 6.00f    // Threshold for overcurrent
+
+// --- LCD buffer ---
+char buffer[32];
+unsigned int zero_offset = 512;
+
+// --- Function prototypes ---
+void lcdcmd(unsigned char data);
+void lcddata(unsigned char data);
+void lcdinit(void);
+void lcdstring(const char *s);
+unsigned int atod(void);
+void show_current_on_lcd(float current, float adc_avg);
+void do_zero_calibration(void);
+void ledUp(void);
+void ledDown(void);
+void ledStop(void);
+
+// --- LED functions ---
+void ledUp() { LED1 = 1; LED2 = 0; }
+void ledDown() { LED1 = 0; LED2 = 1; }
+void ledStop() { LED1 = 0; LED2 = 0; }
+
+// --- ISR ---
+void __interrupt() ISR(void) {
+    if (INT1IF) {
+        reverseFlag = 1;
+        reverseCounter = 0;
+        INT1IF = 0;
+    }
+}
+
+// --- LCD functions ---
+void lcdcmd(unsigned char data) {
+    PORTD = data;
+    rs = 0; rw = 0; en = 1;
+    __delay_ms(2);
+    en = 0;
+}
+
+void lcddata(unsigned char data) {
+    PORTD = data;
+    rs = 1; rw = 0; en = 1;
+    __delay_ms(2);
+    en = 0;
+}
+
+void lcdinit() {
+    __delay_ms(20);
+    lcdcmd(0x38);  // 8-bit, 2-line, 5x8
+    __delay_ms(5);
+    lcdcmd(0x0C);  // display ON, cursor off
+    __delay_ms(5);
+    lcdcmd(0x06);  // entry mode
+    __delay_ms(5);
+    lcdcmd(0x01);  // clear
+    __delay_ms(5);
+    lcdcmd(0x80);  // home
+}
+
+void lcdstring(const char *s) {
+    while(*s) lcddata(*s++);
+}
+
+// --- ADC read ---
+unsigned int atod() {
+    ADCON0bits.GO = 1;
+    while (ADCON0bits.GO == 1);
+    return ((ADRESH << 8) | ADRESL);
+}
+
+// --- Display current ---
+void show_current_on_lcd(float current, float adc_avg) {
+    if (fabs(current) < ZERO_CURRENT_A) current = 0.0f;
+
+    int int_part = (int)current;
+    int dec_part = (int)round((current - int_part) * 100.0f);
+    if (dec_part == 100) { int_part++; dec_part = 0; }
+
+    lcdcmd(0x80); // row 1
+    sprintf(buffer, "I=%d.%02d A   ", int_part, dec_part);
+    lcdstring(buffer);
+
+    lcdcmd(0xC0); // row 2
+    sprintf(buffer, "ADC=%03d Z=%03d", (int)adc_avg, zero_offset);
+    lcdstring(buffer);
+}
+
+// --- Zero calibration ---
+void do_zero_calibration(void) {
+    unsigned long sum = 0;
+    for (int i = 0; i < ZERO_CAL_SAMPLES; i++) {
+        sum += atod();
+        __delay_ms(SAMPLE_DELAY_MS);
+    }
+    zero_offset = (unsigned int)(sum / ZERO_CAL_SAMPLES);
+
+    lcdcmd(0x01);
+    lcdcmd(0x80);
+    lcdstring("Zero Cal Done");
+    __delay_ms(800);
+}
+
+// --- Main ---
+void main(void) {
+    // Oscillator
+    OSCCON = 0x6A; // 4 MHz
+
+    // PORT directions
+    TRISC = 0x00; // LCD control
+    TRISD = 0x00; // LCD data
+    rw = 0;
+    en = 0;
+    L_en=1;
+    R_en=1;
+
+    TRISBbits.TRISB7 = 0; // LED1
+    TRISBbits.TRISB6 = 0; // LED2
+    TRISBbits.TRISB2 = 1; // SW1
+    TRISBbits.TRISB3 = 1; // SW2
+    TRISBbits.TRISB5 = 0; // L_en as output
+    TRISBbits.TRISB4 = 0; // R_en as output
+    INTCON2bits.RBPU = 0; // enable internal pullups 
+    
+    PORTBbits.RB5=1;
+    PORTBbits.RB4=1;
+    
+    // Interrupt setup
+    RCONbits.IPEN = 0;
+    INTCON3bits.INT1IE = 1;
+    INTCON2bits.INTEDG1 = 0; // falling edge
+    INTCON3bits.INT1IF = 0;
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+
+    // ADC setup
+    TRISAbits.TRISA1 = 1; // AN1 input
+    ADCON0 = 0x05;        // ADC ON, CHS = 001
+    ADCON1 = 0x0D;        // AN1 analog, rest digital
+    ADCON2 = 0x8D;        // Right justified, Fosc/64, Tacq=2TAD
+
+    // LCD init
+    lcdinit();
+    lcdcmd(0x01);
+    lcdcmd(0x80);
+    lcdstring("ACS712 Current");
+    __delay_ms(900);
+
+    // Zero calibration
+    do_zero_calibration();
+
+    // --- Overcurrent latch flag ---
+    unsigned char overcurrentLatched = 0;
+
+    while(1) {
+        // --- ADC measurement ---
+        unsigned long sum = 0;
+        for (int i = 0; i < MAIN_SAMPLES; i++) {
+            sum += atod();
+            __delay_ms(SAMPLE_DELAY_MS);
+        }
+        float adc_avg = sum / (float)MAIN_SAMPLES;
+
+        float voltage = (adc_avg * VREF) / ADC_MAX;
+        float zero_voltage = (zero_offset * VREF) / ADC_MAX;
+        float current = (voltage - zero_voltage) / ACS_SENS;
+
+        // --- Check current threshold ---
+        if (!overcurrentLatched && fabs(current) >= CURRENT_THRESHOLD) {
+            INT1IF = 1;              // Force INT1 interrupt (triggers ISR)
+            overcurrentLatched = 1;  // latch set
+        }
+
+        // Reset latch once current goes below threshold
+        if (overcurrentLatched && fabs(current) < CURRENT_THRESHOLD) {
+            overcurrentLatched = 0;  // allow retrigger
+        }
+
+        // --- LED / motor control ---
+        if (reverseFlag) {
+            ledDown();          // force motor reverse
+            __delay_ms(3000);// short delay to pace counter
+            reverseFlag = 0; // change reverseflage variable is added 
+            reverseCounter++;
+            if (reverseCounter >300) { // 300 * 10ms = ~3 sec
+                reverseFlag = 0;
+                reverseCounter = 0;
+            }
+        }
+        else {
+            if (SW1 == 0 && SW2 == 1) 
+            {
+                ledUp();
+            }
+            else if (SW1 == 1 && SW2 == 0) 
+            {
+                ledDown();
+            }
+            else 
+            {
+                ledStop();
+            }
+        }
+
+        // --- Show current on LCD ---
+        show_current_on_lcd(current, adc_avg);
+    }
+}
